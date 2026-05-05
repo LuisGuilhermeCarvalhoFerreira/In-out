@@ -1,0 +1,166 @@
+/* 1. VARIÁVEIS (O DNA do site) */
+:root {
+  --verde-floresta: #2D5A27;
+  --cinza-chumbo: #2C2F2C;
+  --branco-neve: #F8F9FA;
+  --texto-suave: #666;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. RESET GLOBAL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--branco-neve);
+  color: var(--cinza-chumbo);
+  line-height: 1.6;
+}
+
+/* 3. NAVBAR (O segredo do alinhamento) */
+.navbar {
+  background: white;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between; /* Empurra logo pra um lado e links pro outro */
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--verde-floresta);
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* Espaço entre Explorar, Reservas, Perfil */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--cinza-chumbo);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--verde-floresta);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 4. BOTÕES */
+.btn-ghost {
+  text-decoration: none;
+  color: var(--cinza-chumbo);
+  font-weight: 600;
+}
+
+.btn-reserva {
+  background-color: var(--verde-floresta);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-reserva:hover {
+  background-color: var(--cinza-chumbo);
+  transform: translateY(-2px);
+}
+
+/* 5. GRID E CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 5%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* 6. CARDS */
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+/* 7. AUTH (Login/Cadastro) */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Desconta a altura da navbar */
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* Esconde links no mobile por enquanto */
+}
