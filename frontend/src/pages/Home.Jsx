@@ -1,29 +1,34 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../components/Card';
+import Hero from '../components/Hero'; // Vamos criar esse componente abaixo
 
 function Home() {
   const [destinos, setDestinos] = useState([]);
 
   useEffect(() => {
-    const fetchDestinos = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/destinos');
-        setDestinos(response.data);
-      } catch (error) {
-        console.error("Erro ao carregar destinos:", error);
-      }
-    };
-    fetchDestinos();
+    axios.get('http://localhost:3001/destinos')
+      .then(res => setDestinos(res.data))
+      .catch(err => console.log(err));
   }, []);
 
   return (
-    <main className="container">
-      <h2 style={{ marginBottom: '2rem' }}>Destinos Recomendados</h2>
-      <div className="grid">
-        {destinos.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+    <main>
+      {/* 1. Hero Section aparece primeiro */}
+      <Hero /> 
+
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">Destinos em Destaque</h2>
+          <p className="section-subtitle">As melhores escolhas para sua próxima aventura</p>
+        </div>
+
+        {/* 2. O GRID que organiza os cards */}
+        <div className="grid"> 
+          {destinos.map((dest) => (
+            <Card key={dest.id} destino={dest} />
+          ))}
+        </div>
       </div>
     </main>
   );

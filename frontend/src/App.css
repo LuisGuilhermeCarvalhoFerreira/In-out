@@ -1,13 +1,30 @@
-/* 1. VARIÁVEIS (O DNA do site) */
+/* 
+   ========================================
+   1. VARIÁVEIS E FONTES
+   ======================================== 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
 :root {
   --verde-floresta: #2D5A27;
+  --verde-escuro: #1a4d3c;
   --cinza-chumbo: #2C2F2C;
   --branco-neve: #F8F9FA;
-  --texto-suave: #666;
+  --texto-suave: #717171;
+  
+  /* Efeitos de profundidade */
+  --glass: rgba(255, 255, 255, 0.85);
+  --shadow-premium: 0 10px 30px rgba(0,0,0,0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 2. RESET GLOBAL */
+
+
+/* 
+   ========================================
+   2. RESET E BASE
+   ======================================== 
+*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,50 +32,62 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--branco-neve);
   color: var(--cinza-chumbo);
-  line-height: 1.6;
 }
 
-/* 3. NAVBAR (O segredo do alinhamento) */
+
+
+/* 
+   ========================================
+   3. NAVBAR (Glassmorphism & Identidade)
+   ======================================== 
+*/
 .navbar {
-  background: white;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   height: 80px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 0 5%;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .navbar-inner {
   width: 100%;
   max-width: 1200px;
   display: flex;
-  justify-content: space-between; /* Empurra logo pra um lado e links pro outro */
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
+/* Estilizando o Texto da Logo InOut */
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 800;
+  color: var(--cinza-chumbo);
+  text-decoration: none;
+}
+
+.logo span {
   color: var(--verde-floresta);
-  cursor: pointer;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px; /* Espaço entre Explorar, Reservas, Perfil */
+  gap: 35px;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--cinza-chumbo);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95rem;
   transition: var(--transition);
 }
 
@@ -66,101 +95,197 @@ body {
   color: var(--verde-floresta);
 }
 
-.nav-actions {
+
+
+/* 
+   ========================================
+   4. HERO SECTION (O Upgrade Profissional)
+   ======================================== 
+*/
+.hero {
+  height: 75vh;
+  min-height: 500px;
+  /* Use uma imagem de alta qualidade do Unsplash */
+  background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=2074') center/cover no-repeat;
+  position: relative;
   display: flex;
-  gap: 15px;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
-/* 4. BOTÕES */
-.btn-ghost {
-  text-decoration: none;
-  color: var(--cinza-chumbo);
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.35); /* Escurece a foto para o texto aparecer */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hero-content {
+  position: relative; /* Fica acima do overlay */
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem); /* Fonte fluida conforme o tamanho da tela */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 40px;
+}
+
+/* Barra de Busca Estilo "Pílula" */
+.search-container {
+  background: white;
+  padding: 12px 30px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-premium);
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+
+.search-field label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.search-field input {
+  border: none;
+  outline: none;
+  padding: 5px 0;
   font-weight: 600;
+  color: var(--cinza-chumbo);
 }
 
-.btn-reserva {
-  background-color: var(--verde-floresta);
+.btn-search {
+  background: var(--verde-floresta);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: var(--transition);
+}
+
+.btn-search:hover {
+  background: var(--verde-escuro);
+  transform: scale(1.1);
+}
+
+
+
+/* 
+   ========================================
+   5. BOTÕES DE AÇÃO (Navbar)
+   ======================================== 
+*/
+.btn-login {
   text-decoration: none;
+  color: var(--cinza-chumbo);
+  font-weight: 700;
+  margin-right: 20px;
 }
 
-.btn-reserva:hover {
-  background-color: var(--cinza-chumbo);
-  transform: translateY(-2px);
+.btn-cta {
+  background: var(--verde-floresta);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
 }
 
-/* 5. GRID E CONTAINER */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 5%;
+.btn-cta:hover {
+  background: var(--verde-escuro);
+  box-shadow: 0 5px 15px rgba(45, 90, 39, 0.3);
 }
 
+
+
+/* 
+   ========================================
+   6. CARDS (Consolidado e Limpo)
+   ======================================== 
+*/
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
-}
-
-/* 6. CARDS */
-.card {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: var(--transition);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-}
-
-.card-img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
 }
 
-.card-content {
-  padding: 20px;
-}
-
-/* 7. AUTH (Login/Cadastro) */
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px); /* Desconta a altura da navbar */
-}
-
-.auth-card {
+.card-container {
   background: white;
-  padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+  overflow: hidden;
+  box-shadow: var(--sombra-leve);
+  transition: var(--transition);
+  border: 1px solid #eee;
 }
 
-.auth-card input {
+.card-image-wrapper {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
+  height: 220px; /* Altura fixa para manter o padrão */
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher sem esticar */
+}
+
+.card-button {
+  background: var(--verde-floresta);
+  color: white;
+  border: none;
+  padding: 10px 18px;
   border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.card-container:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra-hover);
+}
+
+
+.section-header {
+  margin: 40px 0 20px 0;
+  text-align: left;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--cinza-chumbo);
+}
+
+.section-subtitle {
+  color: var(--texto-suave);
   font-size: 1rem;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .nav-links { display: none; } /* Esconde links no mobile por enquanto */
+.navbar-inner span {
+    display: none; /* Se tiver algum caractere perdido, ele some */
 }
