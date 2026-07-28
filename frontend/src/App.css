@@ -289,3 +289,75 @@ body {
 .navbar-inner span {
     display: none; /* Se tiver algum caractere perdido, ele some */
 }
+
+/* FOOTER CSS */
+.footer {
+  background: white;
+  padding: 60px 0 20px 0;
+  margin-top: 80px;
+  border-top: 1px solid #eee;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.footer-column h4 {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--cinza-chumbo);
+}
+
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  color: var(--texto-suave);
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+
+.footer-column a:hover {
+  color: var(--verde-floresta);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #f5f5f5;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* USER LOGGED NAV */
+.user-logged {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-greeting {
+  font-size: 0.9rem;
+  color: var(--cinza-chumbo);
+}
+
+.btn-logout {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #fff0f0;
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+}

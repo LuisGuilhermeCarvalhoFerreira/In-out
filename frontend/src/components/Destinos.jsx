@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Destinos() {
   // 1. Estado para controlar qual filtro está ativo
@@ -67,6 +68,13 @@ export default function Destinos() {
   const destinosFiltrados = filtroAtivo === 'Todos' 
     ? destinosData 
     : destinosData.filter(d => d.categoria === filtroAtivo);
+
+  const navigate = useNavigate();
+
+  const handleReserve = (destino) => {
+    // navegar para a página de detalhes do destino
+    navigate(`/destinos/${destino.id}`);
+  };
 
   return (
     <div style={{ padding: '60px 20px', maxWidth: '1200px', margin: '0 auto', fontFamily: '"Inter", sans-serif' }}>
@@ -248,7 +256,7 @@ export default function Destinos() {
                     🔥 {destino.dadosSocial}
                   </span>
                   
-                  <button style={{ 
+                  <button onClick={() => handleReserve(destino)} style={{ 
                     backgroundColor: '#2f592c', 
                     color: '#ffffff', 
                     border: 'none', 
@@ -259,7 +267,7 @@ export default function Destinos() {
                     cursor: 'pointer',
                     boxShadow: '0 4px 12px rgba(47, 89, 44, 0.15)'
                   }}>
-                    Explorar
+                    Reservar
                   </button>
                 </div>
 
